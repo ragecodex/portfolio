@@ -1,0 +1,1 @@
+Check online what is the latest version of NodeJs and npm and lets use those version in the technical architecture document where possible. Also check what is the latest ES target that selected NodeJs version supports and update tsconfig with that.
