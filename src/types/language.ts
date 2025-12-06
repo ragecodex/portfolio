@@ -1,0 +1,23 @@
+export interface Language {
+  id: string;
+  name: string;
+  nativeName?: string;
+  proficiency: LanguageProficiency;
+  flag?: string;
+}
+
+export enum LanguageProficiency {
+  Native = "native",
+  Fluent = "fluent",
+  Professional = "professional",
+  Intermediate = "intermediate",
+  Basic = "basic",
+}
+
+export const ProficiencyLabels: Record<LanguageProficiency, string> = {
+  [LanguageProficiency.Native]: "Native",
+  [LanguageProficiency.Fluent]: "Fluent",
+  [LanguageProficiency.Professional]: "Full Professional Proficiency",
+  [LanguageProficiency.Intermediate]: "Intermediate",
+  [LanguageProficiency.Basic]: "Basic",
+};
