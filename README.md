@@ -11,6 +11,9 @@ A modern, minimalist portfolio website built with Next.js 15, TypeScript, and Ta
 - 🔍 SEO optimized with structured data
 - ♿ Accessible (WCAG 2.1 AA compliant)
 - 🎯 Type-safe content management
+- 🧭 Sticky navigation with smooth scrolling
+- 🖼️ Professional background image with parallax effect
+- ✨ Interactive UI elements and animations
 
 ## Tech Stack
 

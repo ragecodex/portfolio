@@ -2,7 +2,7 @@ import { education } from "@/content/education";
 
 export default function Education() {
   return (
-    <section className="section-container">
+    <section id="education" className="section-container">
       <h2 className="text-4xl font-bold text-gray-100 mb-12 text-center">
         Education
       </h2>

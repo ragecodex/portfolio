@@ -11,7 +11,7 @@ export default function Projects() {
   };
 
   return (
-    <section className="section-container">
+    <section id="projects" className="section-container">
       <h2 className="text-4xl font-bold text-gray-100 mb-12 text-center">
         Featured Projects
       </h2>

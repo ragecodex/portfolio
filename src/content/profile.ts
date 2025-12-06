@@ -5,10 +5,10 @@ export const profile: Profile = {
   title: "Senior Software Engineer",
   tagline: "Value-focused problem solver with 8 years of experience building scalable solutions",
   location: "Bosnia and Herzegovina",
-  email: "ragib.smajic@example.com",
+  email: "smajic.ragib@gmail.com",
   social: {
-    linkedin: "https://linkedin.com/in/ragibsmajic",
-    github: "https://github.com/ragibsmajic",
+    linkedin: "https://linkedin.com/in/ragib-smajic",
+    github: "https://github.com/ragecodex",
   },
   coreValues: [
     {

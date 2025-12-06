@@ -2,7 +2,7 @@ import { experiences } from "@/content/experience";
 
 export default function Experience() {
   return (
-    <section className="section-container">
+    <section id="experience" className="section-container">
       <h2 className="text-4xl font-bold text-gray-100 mb-12 text-center">
         Experience
       </h2>

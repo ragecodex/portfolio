@@ -4,7 +4,7 @@
 ---
 
 ### Document Information
-- **Version:** 1.0.0
+- **Version:** 1.1.0
 - **Last Updated:** December 6, 2025
 - **Product Owner:** Ragib Smajic
 - **Status:** MVP Definition
@@ -12,6 +12,7 @@
 ### Version History
 | Version | Date | Changes | Author |
 |---------|------|---------|--------|
+| 1.1.0 | Dec 6, 2025 | Added navigation, background image, updated contact info | GitHub Copilot |
 | 1.0.0 | Dec 6, 2025 | Initial PRD creation with user stories | GitHub Copilot |
 
 ---
@@ -92,7 +93,7 @@ Build a minimalist, high-performance portfolio website for Ragib Smajic (Senior 
 
 ---
 
-#### Story 1.2: Core Values Display
+#### Story 2.2: Core Values Display
 **As a** hiring manager evaluating culture fit  
 **I want** to see Ragib's core professional values highlighted  
 **So that** I can assess alignment with our team culture

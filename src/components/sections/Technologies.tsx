@@ -12,7 +12,7 @@ export default function Technologies() {
   }, {} as Record<TechnologyCategory, typeof technologies>);
 
   return (
-    <section className="section-container">
+    <section id="skills" className="section-container">
       <h2 className="text-4xl font-bold text-gray-100 mb-12 text-center">
         Technologies & Tools
       </h2>

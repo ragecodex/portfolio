@@ -1,9 +1,10 @@
 import { profile } from "@/content/profile";
 
-export default function Hero() {
+export default function About() {
   return (
-    <section className="min-h-screen flex items-center justify-center px-6 animate-fade-in">
-      <div className="max-w-4xl text-center">
+    <section id="about" className="min-h-screen flex flex-col items-center justify-center px-6 animate-fade-in pt-20">
+      {/* Hero Content */}
+      <div className="max-w-4xl text-center mb-20">
         <h1 className="text-5xl md:text-7xl font-bold text-gray-100 mb-6">
           {profile.name}
         </h1>
@@ -39,6 +40,26 @@ export default function Hero() {
           >
             Contact
           </a>
+        </div>
+      </div>
+
+      {/* Core Values */}
+      <div className="max-w-5xl w-full">
+        <h2 className="text-4xl font-bold text-gray-100 mb-12 text-center">
+          Core Values
+        </h2>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          {profile.coreValues.map((value) => (
+            <div
+              key={value.id}
+              className="card hover:scale-105 transition-transform"
+            >
+              <h3 className="text-2xl font-semibold text-gray-100 mb-3">
+                {value.title}
+              </h3>
+              <p className="text-gray-400">{value.description}</p>
+            </div>
+          ))}
         </div>
       </div>
     </section>
