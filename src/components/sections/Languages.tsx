@@ -13,9 +13,6 @@ export default function Languages() {
             <h3 className="text-2xl font-semibold text-gray-100 mb-2">
               {lang.name}
             </h3>
-            {lang.nativeName && (
-              <p className="text-gray-500 mb-3">({lang.nativeName})</p>
-            )}
             <p className="text-gray-400">
               {ProficiencyLabels[lang.proficiency]}
             </p>

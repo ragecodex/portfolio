@@ -4,7 +4,6 @@ export const languages: Language[] = [
   {
     id: "bosnian",
     name: "Bosnian",
-    nativeName: "Bosanski",
     proficiency: LanguageProficiency.Native,
   },
   {
