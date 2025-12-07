@@ -1,10 +1,10 @@
 # Ragib Smajic Portfolio
 
-A modern, minimalist portfolio website built with Next.js 15, TypeScript, and Tailwind CSS.
+A modern, minimalist portfolio website built with Next.js 16, TypeScript, and Tailwind CSS.
 
 ## Features
 
-- 🚀 Built with Next.js 15 (App Router) and TypeScript
+- 🚀 Built with Next.js 16 (App Router) and TypeScript
 - 🎨 Styled with Tailwind CSS 4
 - 📱 Fully responsive design
 - ⚡ Static Site Generation (SSG) for optimal performance
@@ -17,7 +17,7 @@ A modern, minimalist portfolio website built with Next.js 15, TypeScript, and Ta
 
 ## Tech Stack
 
-- **Framework:** Next.js 15
+- **Framework:** Next.js 16
 - **Language:** TypeScript 5
 - **Styling:** Tailwind CSS 4
 - **Deployment:** Cloudflare Pages (planned)
@@ -27,7 +27,7 @@ A modern, minimalist portfolio website built with Next.js 15, TypeScript, and Ta
 
 ### Prerequisites
 
-- Node.js 18+ 
+- Node.js 24+ 
 - npm or yarn
 
 ### Installation
