@@ -9,6 +9,9 @@ const geist = Geist({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL(
+    process.env.NEXT_PUBLIC_SITE_URL || "http://localhost:3000"
+  ),
   title: {
     default: "Ragib Smajic - Senior Software Engineer | Full-Stack Developer",
     template: "%s | Ragib Smajic",
