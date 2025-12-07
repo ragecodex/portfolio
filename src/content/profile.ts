@@ -3,11 +3,11 @@ import { Profile } from "@/types/profile";
 export const profile: Profile = {
   name: "Ragib Smajic",
   title: "Senior Software Engineer",
-  tagline: "Value-focused problem solver with 8 years of experience building scalable solutions",
-  location: "Bosnia and Herzegovina",
+  tagline: "Value-focused problem solver with 8+ years of experience building scalable solutions",
+  location: "Sarajevo, Bosnia and Herzegovina",
   email: "smajic.ragib@gmail.com",
   social: {
-    linkedin: "https://linkedin.com/in/ragib-smajic",
+    linkedin: "https://ba.linkedin.com/in/ragib-smajic",
     github: "https://github.com/ragecodex",
   },
   coreValues: [
