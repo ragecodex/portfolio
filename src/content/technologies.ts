@@ -1,99 +1,84 @@
-import { Technology, TechnologyCategory } from "@/types/technology";
+import { Technology } from "@/types/technology";
 
 export const technologies: Technology[] = [
-  // Languages
   {
     id: "typescript",
     name: "TypeScript",
-    category: TechnologyCategory.Language,
-    yearsOfExperience: 5,
+    icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/typescript/typescript-original.svg",
   },
   {
     id: "javascript",
     name: "JavaScript",
-    category: TechnologyCategory.Language,
-    yearsOfExperience: 8,
+    icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg",
   },
   {
-    id: "python",
-    name: "Python",
-    category: TechnologyCategory.Language,
-    yearsOfExperience: 4,
+    id: "csharp",
+    name: "C#",
+    icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/csharp/csharp-original.svg",
   },
-  // Frameworks
+  {
+    id: "dotnet",
+    name: ".NET Core",
+    icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/dotnetcore/dotnetcore-original.svg",
+  },
   {
     id: "react",
     name: "React",
-    category: TechnologyCategory.Framework,
-    yearsOfExperience: 6,
-  },
-  {
-    id: "nextjs",
-    name: "Next.js",
-    category: TechnologyCategory.Framework,
-    yearsOfExperience: 3,
+    icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg",
   },
   {
     id: "nodejs",
     name: "Node.js",
-    category: TechnologyCategory.Framework,
-    yearsOfExperience: 6,
+    icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg",
   },
   {
     id: "express",
     name: "Express",
-    category: TechnologyCategory.Framework,
-    yearsOfExperience: 5,
+    icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/express/express-original.svg",
   },
-  // Databases
   {
     id: "postgresql",
     name: "PostgreSQL",
-    category: TechnologyCategory.Database,
-    yearsOfExperience: 5,
-  },
-  {
-    id: "mongodb",
-    name: "MongoDB",
-    category: TechnologyCategory.Database,
-    yearsOfExperience: 4,
+    icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/postgresql/postgresql-original.svg",
   },
   {
     id: "redis",
     name: "Redis",
-    category: TechnologyCategory.Database,
-    yearsOfExperience: 3,
+    icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/redis/redis-original.svg",
   },
-  // Cloud & Infrastructure
+  {
+    id: "elasticsearch",
+    name: "Elasticsearch",
+    icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/elasticsearch/elasticsearch-original.svg",
+  },
   {
     id: "aws",
     name: "AWS",
-    category: TechnologyCategory.Cloud,
-    yearsOfExperience: 5,
+    icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/amazonwebservices/amazonwebservices-original-wordmark.svg",
+  },
+  {
+    id: "azure",
+    name: "Azure",
+    icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/azure/azure-original.svg",
+  },
+  {
+    id: "gcp",
+    name: "Google Cloud",
+    icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/googlecloud/googlecloud-original.svg",
   },
   {
     id: "docker",
     name: "Docker",
-    category: TechnologyCategory.Cloud,
-    yearsOfExperience: 4,
+    icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/docker/docker-original.svg",
   },
   {
     id: "kubernetes",
     name: "Kubernetes",
-    category: TechnologyCategory.Cloud,
-    yearsOfExperience: 2,
+    icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/kubernetes/kubernetes-plain.svg",
   },
-  // Tools
   {
     id: "git",
     name: "Git",
-    category: TechnologyCategory.Tool,
-    yearsOfExperience: 8,
-  },
-  {
-    id: "github-actions",
-    name: "GitHub Actions",
-    category: TechnologyCategory.Tool,
-    yearsOfExperience: 3,
+    icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg",
   },
 ];
