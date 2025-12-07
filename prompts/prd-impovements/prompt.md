@@ -1,1 +1,0 @@
-I did not see that we mentioned languages that I speak. Please update PRD and content and add two languages, Bosnian as my native language and English in which I am fully professionally proficient
