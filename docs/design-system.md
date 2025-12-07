@@ -724,7 +724,7 @@ transition-transform duration-200 /* Transforms (scale, translate) */
 }
 
 .animate-fade-in {
-  animation: fadeIn 0.3s ease-out;
+  animation: fadeIn 0.5s ease-out;
 }
 
 /* Slide Up */

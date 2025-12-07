@@ -8,7 +8,6 @@ const navItems = [
   { label: "Skills", href: "#skills" },
   { label: "Projects", href: "#projects" },
   { label: "Education", href: "#education" },
-  { label: "Languages", href: "#languages" },
 ];
 
 export default function Navigation() {
