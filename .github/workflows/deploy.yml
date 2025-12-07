@@ -1,9 +1,9 @@
-name: Deploy to Cloudflare Pages
+name: Build & Deploy
 
 on:
   push:
     branches:
-      - main
+      - '**'  # Run on all branches
     paths:
       - 'src/**'
       - 'public/**'
@@ -28,17 +28,14 @@ on:
       - 'postcss.config.mjs'
       - '.github/workflows/deploy.yml'
 
-# Cancel in-progress runs for the same workflow and branch
 concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
   cancel-in-progress: true
 
 jobs:
-  build-and-deploy:
+  quality-checks:
+    name: Quality Checks & Build
     runs-on: ubuntu-latest
-    permissions:
-      contents: write
-      deployments: write
     
     steps:
       - name: Checkout repository
@@ -68,8 +65,35 @@ jobs:
           NODE_ENV: production
           NEXT_PUBLIC_SITE_URL: ${{ secrets.SITE_URL || 'https://ragibsmajic.pages.dev' }}
 
+  deploy:
+    name: Deploy to Cloudflare Pages
+    needs: quality-checks
+    runs-on: ubuntu-latest
+    if: github.ref == 'refs/heads/main' && github.event_name == 'push'
+    permissions:
+      contents: write
+      deployments: write
+    
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v6
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build for production
+        run: npm run build
+        env:
+          NODE_ENV: production
+          NEXT_PUBLIC_SITE_URL: ${{ secrets.SITE_URL || 'https://ragibsmajic.pages.dev' }}
+
       - name: Extract version from package.json
-        if: github.ref == 'refs/heads/main' && github.event_name == 'push'
         id: package-version
         run: |
           VERSION=$(node -p "require('./package.json').version")
@@ -77,7 +101,6 @@ jobs:
           echo "tag=v$VERSION" >> $GITHUB_OUTPUT
 
       - name: Check if tag exists
-        if: github.ref == 'refs/heads/main' && github.event_name == 'push'
         id: check-tag
         run: |
           if git rev-parse "refs/tags/${{ steps.package-version.outputs.tag }}" >/dev/null 2>&1; then
@@ -87,7 +110,7 @@ jobs:
           fi
 
       - name: Create and push tag
-        if: github.ref == 'refs/heads/main' && github.event_name == 'push' && steps.check-tag.outputs.exists == 'false'
+        if: steps.check-tag.outputs.exists == 'false'
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
@@ -95,7 +118,6 @@ jobs:
           git push origin "${{ steps.package-version.outputs.tag }}"
 
       - name: Deploy to Cloudflare Pages
-        if: github.ref == 'refs/heads/main' && github.event_name == 'push'
         uses: cloudflare/pages-action@v1
         with:
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
