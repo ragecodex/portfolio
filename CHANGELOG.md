@@ -19,7 +19,7 @@
 #### Updated Contact Information
 - LinkedIn: https://linkedin.com/in/ragib-smajic
 - GitHub: https://github.com/ragecodex
-- Email: smajic.ragib@gmail.com
+- Email: ragib@ragibsmajic.com
 
 ### 🔧 Technical Changes
 

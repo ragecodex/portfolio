@@ -5,7 +5,7 @@ export const profile: Profile = {
   title: "Senior Software Engineer",
   tagline: "Value-focused problem solver with 8+ years of experience building scalable solutions",
   location: "Sarajevo, Bosnia and Herzegovina",
-  email: "smajic.ragib@gmail.com",
+  email: "ragib@ragibsmajic.com",
   social: {
     linkedin: "https://ba.linkedin.com/in/ragib-smajic",
     github: "https://github.com/ragecodex",
