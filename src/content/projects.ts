@@ -3,44 +3,30 @@ import { Project } from "@/types/project";
 export const projects: Project[] = [
   {
     id: "project-1",
-    name: "E-Commerce Platform",
-    description: "Built scalable e-commerce platform handling 10K+ daily transactions",
+    name: "Vacancy & Applications Management Platform",
+    description: "Led migration of Ruby on Rails monolith to microservices architecture for high-load recruitment platform",
     challenge:
-      "The existing monolithic architecture couldn't scale to meet growing demand. Database performance degraded during peak traffic, and deployment cycles took hours.",
+      "The Ruby on Rails monolith became a critical bottleneck under high load with multiple teams working simultaneously. Data migration was particularly complex, requiring selective replication of millions of rows from the monolith database to individual microservice databases while maintaining data consistency.",
     solution:
-      "Redesigned as microservices architecture with event-driven communication. Implemented caching layer with Redis and optimized database queries. Set up CI/CD pipeline with automated testing and zero-downtime deployments.",
+      "Architected migration to Node.js microservices deployed on GCP Kubernetes. Implemented progressive React integration into Rails pages, planning eventual migration to microfrontend architecture. Developed complex SQL scripts for initial migration of millions of rows, then built CDC pipeline using Maxwell and GCP Pub/Sub for real-time data synchronization. Led cross-functional team coordination with client stakeholders to ensure smooth delivery.",
     outcome:
-      "Reduced page load time by 60%, increased system reliability to 99.9% uptime, and decreased deployment time from 4 hours to 15 minutes.",
-    technologies: ["React", "Node.js", "PostgreSQL", "Redis", "AWS", "Docker"],
-    timeframe: "6 months",
-    year: 2023,
+      "Significantly increased system availability and performance for migrated modules. Enabled independent team deployment cycles and reduced bottlenecks. Successfully orchestrated complex data replication strategy maintaining consistency across distributed databases.",
+    technologies: ["React", "Node.js", "Ruby on Rails", "Kubernetes", "GCP", "PostgreSQL", "Maxwell", "GCP Pub/Sub", "Docker", "Stripe"],
+    timeframe: "1 year 6 months",
+    year: 2024,
   },
   {
     id: "project-2",
-    name: "Real-time Analytics Dashboard",
-    description: "Developed real-time analytics platform for monitoring business metrics",
+    name: "Application Performance Monitoring Platform",
+    description: "Architected serverless APM solution processing millions of log entries per second for enterprise client",
     challenge:
-      "Business stakeholders needed instant visibility into key metrics across multiple data sources. Existing reporting was batch-processed overnight, making data 12-24 hours old.",
+      "Required handling extreme data loads with millions of log entries arriving within seconds while maintaining system stability. Elasticsearch API needed protection from overload to prevent data loss. Additionally, implementing SAML authentication with IBM for Kibana on AWS added complexity to the security architecture.",
     solution:
-      "Built real-time data pipeline using Kafka and stream processing. Created interactive dashboard with React and D3.js for data visualization. Implemented WebSocket connections for live updates.",
+      "Designed serverless architecture using AWS Lambda, CloudWatch Logs, and CloudWatch agents for on-premise legacy systems. Implemented two-tier Lambda processing: first tier used Elasticache (clustered Redis) for real-time aggregation and data extraction, second tier buffered through SNS/SQS before Elasticsearch ingestion. This buffer prevented API overload while supporting thousands of parallel Lambda executions. Collaborated with AWS solution architects to increase Lambda soft limits for extreme scalability requirements.",
     outcome:
-      "Enabled real-time decision making with sub-second data latency. Increased data accuracy and reduced manual reporting time by 80%.",
-    technologies: ["React", "D3.js", "Node.js", "Kafka", "MongoDB", "WebSocket"],
-    timeframe: "4 months",
+      "Delivered highly scalable, real-time monitoring solution successfully handling millions of concurrent log entries. Achieved zero data loss through intelligent buffering architecture. Provided enterprise client with instant visibility across all systems with customized, actionable insights.",
+    technologies: ["Node.js", "AWS Lambda", "Elasticsearch", "Kibana", "AWS CloudWatch", "Elasticache", "Redis", "SNS", "SQS", "SAML"],
+    timeframe: "2 years",
     year: 2022,
-  },
-  {
-    id: "project-3",
-    name: "API Gateway Service",
-    description: "Designed and implemented centralized API gateway for microservices",
-    challenge:
-      "Multiple microservices exposed different authentication mechanisms and lacked consistent error handling. No centralized rate limiting or request logging.",
-    solution:
-      "Developed API gateway service handling authentication, rate limiting, request/response transformation, and logging. Implemented circuit breaker pattern for resilience.",
-    outcome:
-      "Reduced client integration complexity, improved security posture, and provided centralized monitoring for all API traffic.",
-    technologies: ["Node.js", "Express", "Redis", "JWT", "Docker", "Kubernetes"],
-    timeframe: "3 months",
-    year: 2021,
-  },
+  }
 ];
