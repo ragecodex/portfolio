@@ -1,4 +1,5 @@
 import { experiences } from "@/content/experience";
+import Image from "next/image";
 
 export default function Experience() {
   return (
@@ -10,9 +11,20 @@ export default function Experience() {
         {experiences.map((exp) => (
           <div key={exp.id} className="relative pl-8 border-l-2 border-gray-800">
             <div className="absolute -left-2 top-0 w-4 h-4 bg-[var(--color-accent-primary)] rounded-full"></div>
-            <h3 className="text-2xl font-bold text-gray-100 mb-2">
-              {exp.company}
-            </h3>
+            <div className="flex items-center gap-4 mb-2">
+              {exp.logo && (
+                <Image
+                  src={exp.logo}
+                  alt={`${exp.company} logo`}
+                  width={48}
+                  height={48}
+                  className="rounded-lg object-contain"
+                />
+              )}
+              <h3 className="text-2xl font-bold text-gray-100">
+                {exp.company}
+              </h3>
+            </div>
             {exp.location && (
               <p className="text-gray-500 mb-6">{exp.location}</p>
             )}

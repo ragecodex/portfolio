@@ -2,9 +2,10 @@ import { Experience } from "@/types/experience";
 
 export const experiences: Experience[] = [
   {
-    id: "company-1",
+    id: "htecgroup",
     company: "HTEC Group",
     companyUrl: "https://htec.com",
+    logo: "/htecgroup_logo.jpg",
     location: "Hybrid (Remote + On-site)",
     roles: [
       {
@@ -25,8 +26,9 @@ export const experiences: Experience[] = [
     ],
   },
   {
-    id: "company-2",
-    company: "Maestral Solutions",
+    id: "mistral",
+    company: "Mistral",
+    logo: "/mistral_technologies_logo.jpg",
     location: "Hybrid (Remote + On-site)",
     roles: [
       {
