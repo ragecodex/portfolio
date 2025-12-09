@@ -2,7 +2,7 @@ name: Snyk Security
 
 on:
   push:
-    branches: ["main" ]
+    branches: ["main"]
   pull_request:
     branches: ["main"]
 
@@ -22,15 +22,16 @@ jobs:
       - name: Set up Snyk CLI to check for security issues
         uses: snyk/actions/setup@806182742461562b67788a64410098c9d9b96adb
 
-      # Runs Snyk Code (SAST) analysis and uploads result into GitHub.
-      # Using || true to not fail the pipeline if vulnerabilities are found
+      # Runs Snyk Code (SAST) analysis - fails on medium/high/critical severity
       - name: Snyk Code test
-        run: snyk code test --sarif > snyk-code.sarif || true
+        run: snyk code test --sarif --severity-threshold=medium > snyk-code.sarif
+        continue-on-error: false  # Fail workflow on medium+ issues
         env:
           SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
 
-      # Push the Snyk Code results into GitHub Code Scanning tab
+      # Upload results even if scan fails (for visibility in Code Scanning tab)
       - name: Upload result to GitHub Code Scanning
+        if: always()  # Runs even if previous step failed
         uses: github/codeql-action/upload-sarif@v4
         with:
           sarif_file: snyk-code.sarif
