@@ -4,29 +4,9 @@ on:
   push:
     branches:
       - '**'  # Run on all branches
-    paths:
-      - 'src/**'
-      - 'public/**'
-      - 'package.json'
-      - 'package-lock.json'
-      - 'next.config.ts'
-      - 'tailwind.config.ts'
-      - 'tsconfig.json'
-      - 'postcss.config.mjs'
-      - '.github/workflows/deploy.yml'
   pull_request:
     branches:
       - main
-    paths:
-      - 'src/**'
-      - 'public/**'
-      - 'package.json'
-      - 'package-lock.json'
-      - 'next.config.ts'
-      - 'tailwind.config.ts'
-      - 'tsconfig.json'
-      - 'postcss.config.mjs'
-      - '.github/workflows/deploy.yml'
 
 concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
@@ -42,7 +22,7 @@ jobs:
         uses: actions/checkout@v6
 
       - name: Setup Node.js
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@v6
         with:
           node-version: '24'
           cache: 'npm'
@@ -65,11 +45,51 @@ jobs:
           NODE_ENV: production
           NEXT_PUBLIC_SITE_URL: ${{ secrets.SITE_URL || 'https://ragibsmajic.pages.dev' }}
 
-  deploy:
-    name: Deploy to Cloudflare Pages
+  check-version:
+    name: Check Version Change
     needs: quality-checks
     runs-on: ubuntu-latest
     if: github.ref == 'refs/heads/main' && github.event_name == 'push'
+    outputs:
+      version-changed: ${{ steps.check.outputs.changed }}
+      version: ${{ steps.check.outputs.version }}
+    
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v6
+        with:
+          fetch-depth: 2  # Need previous commit to compare
+
+      - name: Check if version changed
+        id: check
+        run: |
+          CURRENT_VERSION=$(node -p "require('./package.json').version")
+          
+          # Get previous version (from parent commit)
+          git checkout HEAD~1 -- package.json 2>/dev/null || echo "No previous version"
+          PREVIOUS_VERSION=$(node -p "require('./package.json').version" 2>/dev/null || echo "0.0.0")
+          
+          # Restore current package.json
+          git checkout HEAD -- package.json
+          
+          echo "Previous version: $PREVIOUS_VERSION"
+          echo "Current version: $CURRENT_VERSION"
+          
+          if [ "$CURRENT_VERSION" != "$PREVIOUS_VERSION" ]; then
+            echo "changed=true" >> $GITHUB_OUTPUT
+            echo "Version changed: $PREVIOUS_VERSION → $CURRENT_VERSION"
+          else
+            echo "changed=false" >> $GITHUB_OUTPUT
+            echo "Version unchanged: $CURRENT_VERSION"
+          fi
+          
+          echo "version=$CURRENT_VERSION" >> $GITHUB_OUTPUT
+
+  deploy:
+    name: Deploy to Cloudflare Pages
+    needs: check-version
+    runs-on: ubuntu-latest
+    if: needs.check-version.outputs.version-changed == 'true'
     permissions:
       contents: write
       deployments: write
@@ -93,29 +113,12 @@ jobs:
           NODE_ENV: production
           NEXT_PUBLIC_SITE_URL: ${{ secrets.SITE_URL || 'https://ragibsmajic.pages.dev' }}
 
-      - name: Extract version from package.json
-        id: package-version
-        run: |
-          VERSION=$(node -p "require('./package.json').version")
-          echo "version=$VERSION" >> $GITHUB_OUTPUT
-          echo "tag=v$VERSION" >> $GITHUB_OUTPUT
-
-      - name: Check if tag exists
-        id: check-tag
-        run: |
-          if git rev-parse "refs/tags/${{ steps.package-version.outputs.tag }}" >/dev/null 2>&1; then
-            echo "exists=true" >> $GITHUB_OUTPUT
-          else
-            echo "exists=false" >> $GITHUB_OUTPUT
-          fi
-
       - name: Create and push tag
-        if: steps.check-tag.outputs.exists == 'false'
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          git tag -a "${{ steps.package-version.outputs.tag }}" -m "Release ${{ steps.package-version.outputs.tag }}"
-          git push origin "${{ steps.package-version.outputs.tag }}"
+          git tag -a "v${{ needs.check-version.outputs.version }}" -m "Release v${{ needs.check-version.outputs.version }}"
+          git push origin "v${{ needs.check-version.outputs.version }}"
 
       - name: Deploy to Cloudflare Pages
         uses: cloudflare/pages-action@v1
