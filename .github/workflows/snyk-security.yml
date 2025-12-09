@@ -1,79 +1,79 @@
-name: Snyk Security
+# name: Snyk Security
 
-on:
-  push:
-    branches: ["main"]
-  pull_request:
-    branches: ["main"]
+# on:
+#   push:
+#     branches: ["main"]
+#   pull_request:
+#     branches: ["main"]
 
-permissions:
-  contents: read
+# permissions:
+#   contents: read
 
-jobs:
-  snyk:
-    name: Snyk Security Scan
-    permissions:
-      contents: read
-      security-events: write 
-      actions: read 
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v6
+# jobs:
+#   snyk:
+#     name: Snyk Security Scan
+#     permissions:
+#       contents: read
+#       security-events: write 
+#       actions: read 
+#     runs-on: ubuntu-latest
+#     steps:
+#       - uses: actions/checkout@v6
       
-      - name: Set up Snyk CLI to check for security issues
-        uses: snyk/actions/setup@806182742461562b67788a64410098c9d9b96adb
+#       - name: Set up Snyk CLI to check for security issues
+#         uses: snyk/actions/setup@806182742461562b67788a64410098c9d9b96adb
 
-      # Runs Snyk Code (SAST) analysis - fails on medium/high/critical severity
-      - name: Snyk Code test
-        run: snyk code test --sarif --severity-threshold=medium > snyk-code.sarif
-        continue-on-error: false  # Fail workflow on medium+ issues
-        env:
-          SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
+#       # Runs Snyk Code (SAST) analysis - fails on medium/high/critical severity
+#       - name: Snyk Code test
+#         run: snyk code test --sarif --severity-threshold=medium > snyk-code.sarif
+#         continue-on-error: false  # Fail workflow on medium+ issues
+#         env:
+#           SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
 
-      # Upload Code test results even if scan fails (for visibility in Code Scanning tab)
-      - name: Upload Code test results to GitHub Code Scanning
-        if: always()  # Runs even if previous step failed
-        uses: github/codeql-action/upload-sarif@v4
-        with:
-          sarif_file: snyk-code.sarif
-          category: snyk-code
+#       # Upload Code test results even if scan fails (for visibility in Code Scanning tab)
+#       - name: Upload Code test results to GitHub Code Scanning
+#         if: always()  # Runs even if previous step failed
+#         uses: github/codeql-action/upload-sarif@v4
+#         with:
+#           sarif_file: snyk-code.sarif
+#           category: snyk-code
 
-      # Runs Snyk Open Source (dependency) analysis - fails on medium/high/critical severity
-      - name: Snyk Open Source test
-        run: snyk test --sarif --severity-threshold=medium > snyk-opensource.sarif
-        continue-on-error: false  # Fail workflow on medium+ issues
-        env:
-          SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
+#       # Runs Snyk Open Source (dependency) analysis - fails on medium/high/critical severity
+#       - name: Snyk Open Source test
+#         run: snyk test --sarif --severity-threshold=medium > snyk-opensource.sarif
+#         continue-on-error: false  # Fail workflow on medium+ issues
+#         env:
+#           SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
 
-      # Upload Open Source test results even if scan fails
-      - name: Upload Open Source test results to GitHub Code Scanning
-        if: always()  # Runs even if previous step failed
-        uses: github/codeql-action/upload-sarif@v4
-        with:
-          sarif_file: snyk-opensource.sarif
-          category: snyk-opensource
+#       # Upload Open Source test results even if scan fails
+#       - name: Upload Open Source test results to GitHub Code Scanning
+#         if: always()  # Runs even if previous step failed
+#         uses: github/codeql-action/upload-sarif@v4
+#         with:
+#           sarif_file: snyk-opensource.sarif
+#           category: snyk-opensource
 
-      # Runs Snyk IaC analysis on GitHub Actions workflows
-      - name: Snyk IaC test
-        run: snyk iac test --sarif --severity-threshold=medium > snyk-iac.sarif
-        continue-on-error: false
-        env:
-          SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
+#       # Runs Snyk IaC analysis on GitHub Actions workflows
+#       - name: Snyk IaC test
+#         run: snyk iac test --sarif --severity-threshold=medium > snyk-iac.sarif
+#         continue-on-error: false
+#         env:
+#           SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
 
-      # Upload IaC test results
-      - name: Upload IaC test results to GitHub Code Scanning
-        if: always()
-        uses: github/codeql-action/upload-sarif@v4
-        with:
-          sarif_file: snyk-iac.sarif
-          category: snyk-iac
+#       # Upload IaC test results
+#       - name: Upload IaC test results to GitHub Code Scanning
+#         if: always()
+#         uses: github/codeql-action/upload-sarif@v4
+#         with:
+#           sarif_file: snyk-iac.sarif
+#           category: snyk-iac
 
-      # Snyk Monitor (main branch only)
-      - name: Snyk Monitor (main branch only)
-        if: github.ref == 'refs/heads/main' && github.event_name == 'push'
-        run: |
-          snyk monitor \
-            --org=${{ secrets.SNYK_ORG_ID }} \
-            --project-name="ragecodex/portfolio"
-        env:
-          SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
+#       # Snyk Monitor (main branch only)
+#       - name: Snyk Monitor (main branch only)
+#         if: github.ref == 'refs/heads/main' && github.event_name == 'push'
+#         run: |
+#           snyk monitor \
+#             --org=${{ secrets.SNYK_ORG_ID }} \
+#             --project-name="ragecodex/portfolio"
+#         env:
+#           SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
