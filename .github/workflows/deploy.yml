@@ -45,82 +45,29 @@ jobs:
         run: npm run build
         env:
           NODE_ENV: production
-          NEXT_PUBLIC_SITE_URL: ${{ secrets.SITE_URL || 'https://ragibsmajic.pages.dev' }}
+          NEXT_PUBLIC_SITE_URL: ${{ secrets.SITE_URL }}
 
-  check-version:
-    name: Check Version Change
-    needs: quality-checks
-    runs-on: ubuntu-latest
-    if: github.ref == 'refs/heads/main' && github.event_name == 'push'
-    outputs:
-      version-changed: ${{ steps.check.outputs.changed }}
-      version: ${{ steps.check.outputs.version }}
-    
-    steps:
-      - name: Checkout repository
-        uses: actions/checkout@v6
+      - name: Upload build artifacts
+        uses: actions/upload-artifact@v6
         with:
-          fetch-depth: 2  # Need previous commit to compare
-
-      - name: Check if version changed
-        id: check
-        run: |
-          CURRENT_VERSION=$(node -p "require('./package.json').version")
-          
-          # Get previous version (from parent commit)
-          git checkout HEAD~1 -- package.json 2>/dev/null || echo "No previous version"
-          PREVIOUS_VERSION=$(node -p "require('./package.json').version" 2>/dev/null || echo "0.0.0")
-          
-          # Restore current package.json
-          git checkout HEAD -- package.json
-          
-          echo "Previous version: $PREVIOUS_VERSION"
-          echo "Current version: $CURRENT_VERSION"
-          
-          if [ "$CURRENT_VERSION" != "$PREVIOUS_VERSION" ]; then
-            echo "changed=true" >> $GITHUB_OUTPUT
-            echo "Version changed: $PREVIOUS_VERSION → $CURRENT_VERSION"
-          else
-            echo "changed=false" >> $GITHUB_OUTPUT
-            echo "Version unchanged: $CURRENT_VERSION"
-          fi
-          
-          echo "version=$CURRENT_VERSION" >> $GITHUB_OUTPUT
+          name: build-output
+          path: out
+          retention-days: 1
 
   deploy:
     name: Deploy to Cloudflare Pages
-    needs: check-version
+    needs: quality-checks
     runs-on: ubuntu-latest
-    if: needs.check-version.outputs.version-changed == 'true'
+    if: github.ref == 'refs/heads/main' && github.event_name == 'push'
     permissions:
-      contents: write
       deployments: write
     
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v6
-
-      - name: Setup Node.js
-        uses: actions/setup-node@v4
+      - name: Download build artifacts
+        uses: actions/download-artifact@v6
         with:
-          node-version: '24'
-          cache: 'npm'
-
-      - name: Install dependencies
-        run: npm ci
-
-      - name: Build for production
-        run: npm run build
-        env:
-          NODE_ENV: production
-          NEXT_PUBLIC_SITE_URL: ${{ secrets.SITE_URL || 'https://ragibsmajic.pages.dev' }}
-
-      - name: Create and push tag
-        run: |
-          git config user.name "github-actions[bot]"
-          git config user.email "github-actions[bot]@users.noreply.github.com"
-          git tag -a "v${{ needs.check-version.outputs.version }}" -m "Release v${{ needs.check-version.outputs.version }}"
-          git push origin "v${{ needs.check-version.outputs.version }}"
+          name: build-output
+          path: out
 
       - name: Deploy to Cloudflare Pages
         uses: cloudflare/pages-action@v1
@@ -132,3 +79,31 @@ jobs:
           gitHubToken: ${{ secrets.GITHUB_TOKEN }}
           branch: ${{ github.ref_name }}
           wranglerVersion: '3'
+
+  create-tag:
+    name: Create Release Tag
+    needs: deploy
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v6
+
+      - name: Create and push tag
+        run: |
+          VERSION=$(node -p "require('./package.json').version")
+          TAG_NAME="v$VERSION"
+          
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          
+          # Check if tag already exists
+          if git ls-remote --tags origin | grep -q "refs/tags/$TAG_NAME$"; then
+            echo "Tag $TAG_NAME already exists, skipping tag creation"
+          else
+            echo "Creating new tag $TAG_NAME"
+            git tag -a "$TAG_NAME" -m "Release $TAG_NAME"
+            git push origin "$TAG_NAME"
+          fi
