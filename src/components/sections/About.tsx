@@ -1,12 +1,16 @@
+"use client";
+
 import { profile } from "@/content/profile";
 import Image from "next/image";
+import ContactModal from "@/components/layout/ContactModal";
+import { useState } from "react";
 
 export default function About() {
+  const [isContactModalOpen, setIsContactModalOpen] = useState(false);
+
   return (
     <section id="about" className="min-h-screen flex flex-col items-center justify-center px-4 sm:px-6 animate-fade-in pt-16 pb-12">
-      {/* Hero Content */}
       <div className="max-w-4xl text-center mb-8 lg:mb-10">
-        {/* Profile Image */}
         <div className="mb-6 flex justify-center">
           <Image
             src="/profile.jpg"
@@ -46,17 +50,16 @@ export default function About() {
           >
             GitHub
           </a>
-          <a
-            href={`mailto:${profile.email}`}
-            className="px-5 py-2.5 border border-gray-600 text-gray-100 text-sm sm:text-base rounded-lg hover:border-gray-500 transition-colors"
-            aria-label="Send Email"
+          <button
+            onClick={() => setIsContactModalOpen(true)}
+            className="px-5 py-2.5 border border-gray-600 text-gray-100 text-sm sm:text-base rounded-lg hover:border-gray-500 transition-colors cursor-pointer"
+            aria-label="Open contact modal"
           >
             Contact
-          </a>
+          </button>
         </div>
       </div>
 
-      {/* Core Values */}
       <div className="max-w-5xl w-full">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4 lg:gap-6">
           {profile.coreValues.map((value) => (
@@ -72,6 +75,10 @@ export default function About() {
           ))}
         </div>
       </div>
-    </section>
+      <ContactModal
+        isOpen={isContactModalOpen}
+        onClose={() => setIsContactModalOpen(false)}
+      />    
+      </section>
   );
 }
