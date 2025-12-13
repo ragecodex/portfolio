@@ -1,7 +1,12 @@
 import type { Metadata } from "next";
 import { Geist } from "next/font/google";
 import "./globals.css";
-import { getPersonSchema, getProfilePageSchema } from "@/lib/structuredData";
+import {
+  getPersonSchema,
+  getProfilePageSchema,
+  getWorkExperienceSchema,
+  getEducationalOccupationalCredentialSchema,
+} from "./seo";
 
 const geist = Geist({
   subsets: ["latin"],
@@ -13,11 +18,11 @@ export const metadata: Metadata = {
     process.env.NEXT_PUBLIC_SITE_URL || "http://localhost:3000"
   ),
   title: {
-    default: "Ragib Smajic - Senior Software Engineer | Full-Stack Developer",
+    default: "Ragib Smajic - Senior Software Engineer",
     template: "%s | Ragib Smajic",
   },
   description:
-    "Portfolio of Ragib Smajic, Senior Software Engineer with 8 years of experience building scalable web applications. Specializing in React, Node.js, AWS, and cloud architecture.",
+    "Portfolio of Ragib Smajic, Senior Software Engineer with 8 years of experience building scalable web applications. Specializing in Node.js, .Net, AWS, and cloud architecture.",
   keywords: [
     "Ragib Smajic",
     "Senior Software Engineer",
@@ -81,20 +86,31 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  const personSchema = getPersonSchema();
-  const profilePageSchema = getProfilePageSchema();
-
   return (
     <html lang="en" className={geist.variable}>
       <head>
         <script
           type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(personSchema) }}
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(getPersonSchema()) }}
         />
         <script
           type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(profilePageSchema) }}
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(getProfilePageSchema()) }}
         />
+        {getWorkExperienceSchema().map((schema, i) => (
+          <script
+            key={`work-${i}`}
+            type="application/ld+json"
+            dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }}
+          />
+        ))}
+        {getEducationalOccupationalCredentialSchema().map((schema, i) => (
+          <script
+            key={`edu-${i}`}
+            type="application/ld+json"
+            dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }}
+          />
+        ))}
       </head>
       <body className="antialiased">{children}</body>
     </html>

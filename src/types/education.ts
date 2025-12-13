@@ -1,4 +1,4 @@
-export interface Education {
+export type Education = {
   id: string;
   institution: string;
   institutionUrl?: string;

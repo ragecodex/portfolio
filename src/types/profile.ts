@@ -1,4 +1,4 @@
-export interface Profile {
+export type Profile ={
   name: string;
   title: string;
   tagline: string;
@@ -9,7 +9,7 @@ export interface Profile {
   avatar?: string;
 }
 
-export interface SocialLinks {
+export type SocialLinks = {
   linkedin: string;
   github: string;
   twitter?: string;
@@ -19,7 +19,7 @@ export interface SocialLinks {
   [key: string]: string | undefined;
 }
 
-export interface CoreValue {
+export type CoreValue = {
   id: string;
   title: string;
   description: string;
