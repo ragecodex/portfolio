@@ -39,7 +39,7 @@ export default function Footer() {
           </button>
         </div>
 
-        <div className="pt-8 border-t border-gray-700 text-center text-gray-500">
+        <div className="pt-8 border-t border-gray-700 text-center text-gray-400">
           <p>© {currentYear} {profile.name}. All rights reserved.</p>
         </div>
       </div>
