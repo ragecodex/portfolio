@@ -47,7 +47,7 @@ export default function Projects() {
               </div>
 
               {project.timeframe && (
-                <p className="text-gray-500 text-sm">
+                <p className="text-gray-400 text-sm">
                   {project.timeframe} • {project.year}
                 </p>
               )}

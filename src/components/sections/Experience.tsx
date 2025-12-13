@@ -26,7 +26,7 @@ export default function Experience() {
               </h3>
             </div>
             {exp.location && (
-              <p className="text-gray-500 mb-6">{exp.location}</p>
+              <p className="text-gray-400 mb-6">{exp.location}</p>
             )}
             <div className="space-y-8">
               {exp.roles.map((role) => (
@@ -59,7 +59,7 @@ export default function Experience() {
                           })}
                     </span>
                     {role.duration && (
-                      <span className="text-gray-500">({role.duration})</span>
+                      <span className="text-gray-400">({role.duration})</span>
                     )}
                   </div>
                   <ul className="space-y-2 text-gray-400 mb-4">

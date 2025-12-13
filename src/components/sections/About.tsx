@@ -28,7 +28,7 @@ export default function About() {
         <h2 className="text-xl sm:text-2xl lg:text-3xl text-gray-400 mb-4">
           {profile.title}
         </h2>
-        <p className="text-base sm:text-lg lg:text-xl text-gray-500 max-w-3xl mx-auto">
+        <p className="text-base sm:text-lg lg:text-xl text-gray-400 max-w-3xl mx-auto">
           {profile.tagline}
         </p>
         <div className="mt-8 flex gap-4 justify-center flex-wrap">

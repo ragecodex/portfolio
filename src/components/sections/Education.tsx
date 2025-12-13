@@ -15,7 +15,7 @@ export default function Education() {
             <p className="text-xl text-gray-400 mb-2">
               {edu.degree} in {edu.fieldOfStudy}
             </p>
-            <p className="text-gray-500 mb-4">
+            <p className="text-gray-400 mb-4">
               {typeof edu.startDate === "string"
                 ? new Date(edu.startDate).getFullYear()
                 : edu.startDate.getFullYear()}{" "}
