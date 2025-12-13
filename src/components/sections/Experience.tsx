@@ -62,9 +62,12 @@ export default function Experience() {
                       <span className="text-gray-500">({role.duration})</span>
                     )}
                   </div>
-                  <ul className="list-disc list-inside space-y-2 text-gray-400 mb-4">
+                  <ul className="space-y-2 text-gray-400 mb-4">
                     {role.responsibilities.map((resp, idx) => (
-                      <li key={idx}>{resp}</li>
+                      <li key={idx} className="flex">
+                        <span className="mr-2 flex-shrink-0">•</span>
+                        <span>{resp}</span>
+                      </li>
                     ))}
                   </ul>
                   {role.technologies && role.technologies.length > 0 && (
