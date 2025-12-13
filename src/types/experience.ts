@@ -1,4 +1,4 @@
-export interface Experience {
+export type Experience = {
   id: string;
   company: string;
   companyUrl?: string;
@@ -8,7 +8,7 @@ export interface Experience {
   logo?: string;
 }
 
-export interface Role {
+export type Role = {
   id: string;
   title: string;
   startDate: Date | string;

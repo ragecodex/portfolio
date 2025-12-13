@@ -5,12 +5,12 @@ import Languages from "@/components/sections/Languages";
 import Technologies from "@/components/sections/Technologies";
 import Projects from "@/components/sections/Projects";
 import Footer from "@/components/layout/Footer";
-import Navigation from "@/components/layout/Navigation";
+import Header from "@/components/layout/Header";
 
 export default function Home() {
   return (
     <>
-      <Navigation />
+      <Header />
       <main className="min-h-screen">
         <About />
         <Experience />
@@ -18,8 +18,8 @@ export default function Home() {
         <Projects />
         <Education />
         <Languages />
-        <Footer />
       </main>
+      <Footer />
     </>
   );
 }

@@ -1,4 +1,4 @@
-export interface Language {
+export type Language = {
   id: string;
   name: string;
   proficiency: LanguageProficiency;
