@@ -57,7 +57,7 @@ export const experiences: Experience[] = [
           "Integrated third-party APIs and payment gateways like Stripe",
           "Collaborated with designers and product owners to deliver user-friendly interfaces"
         ],
-        technologies: ["AWS", "GCP", "React", "Node.js", "TypeScript", "PostgreSQL", "Express", "AWS Lambda", "API Gateway", "AWS RDS", "AWS S3", "Stripe", "AWS SQS/SNS", "Docker", "GCP Cloud Run", "Kubernetes", "GCP Pub/Sub", "Maxwell (CDC)", "MySQL", "Kubernetes", "MongoDB", "Saga Pattern"],
+        technologies: ["AWS", "GCP", "React", "Node.js", "TypeScript", "PostgreSQL", "Express", "AWS Lambda", "API Gateway", "AWS RDS", "AWS S3", "Stripe", "AWS SQS/SNS", "Docker", "GCP Cloud Run", "Kubernetes", "GCP Pub/Sub", "Maxwell (CDC)", "MySQL", "MongoDB", "Saga Pattern"],
       },
       {
         id: "role-3",
