@@ -1,7 +1,12 @@
+"use client";
+
 import { profile } from "@/content/profile";
+import ContactModal from "@/components/layout/ContactModal";
+import { useState } from "react";
 
 export default function Footer() {
   const currentYear = new Date().getFullYear();
+  const [isContactModalOpen, setIsContactModalOpen] = useState(false);
 
   return (
     <footer id="contact" className="bg-[#0a0a0a] border-t border-gray-700 mt-20">
@@ -25,19 +30,25 @@ export default function Footer() {
           >
             GitHub
           </a>
-          <a
-            href={`mailto:${profile.email}`}
-            className="px-6 py-3 border border-gray-600 text-gray-100 rounded-lg hover:border-gray-500 transition-colors"
-            aria-label="Contact via Email"
+          <button
+            onClick={() => setIsContactModalOpen(true)}
+            className="px-6 py-3 border border-gray-600 text-gray-100 rounded-lg hover:border-gray-500 transition-colors cursor-pointer"
+            aria-label="Open contact modal"
           >
             Contact
-          </a>
+          </button>
         </div>
 
         <div className="pt-8 border-t border-gray-700 text-center text-gray-500">
           <p>© {currentYear} {profile.name}. All rights reserved.</p>
         </div>
       </div>
+
+      {/* Contact Modal */}
+      <ContactModal
+        isOpen={isContactModalOpen}
+        onClose={() => setIsContactModalOpen(false)}
+      />
     </footer>
   );
 }
