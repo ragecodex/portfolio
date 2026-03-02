@@ -74,4 +74,4 @@ This project is configured for deployment on Cloudflare Pages. Push to the main 
 
 ## License
 
-© 2025 Ragib Smajic. All rights reserved.
+© 2026 Ragib Smajic. All rights reserved.
