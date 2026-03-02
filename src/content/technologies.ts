@@ -127,4 +127,14 @@ export const technologies: Technology[] = [
     name: "Auth0",
     icon: "https://cdn.simpleicons.org/auth0/EB5424",
   },
+  {
+    id: "grpc",
+    name: "gRPC",
+    icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/grpc/grpc-original.svg",
+  },
+  {
+    id: "kafka",
+    name: "Kafka",
+    icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/apachekafka/apachekafka-original.svg",
+  },
 ];
