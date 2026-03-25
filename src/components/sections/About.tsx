@@ -15,8 +15,8 @@ export default function About() {
           <Image
             src="/profile.jpg"
             alt={profile.name}
-            width={120}
-            height={120}
+            width={200}
+            height={200}
             className="rounded-full object-cover border-4 border-gray-700"
             priority
           />
