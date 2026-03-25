@@ -13,7 +13,7 @@ export default function About() {
       <div className="max-w-4xl text-center mb-8 lg:mb-10">
         <div className="mb-6 flex justify-center">
           <Image
-            src="/profile.jpg"
+            src="/profile-photo.jpg"
             alt={profile.name}
             width={200}
             height={200}
