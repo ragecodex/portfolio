@@ -45,7 +45,7 @@ jobs:
         run: npm run build
         env:
           NODE_ENV: production
-          NEXT_PUBLIC_SITE_URL: ${{ secrets.SITE_URL }}
+          NEXT_PUBLIC_SITE_URL: ${{ github.ref == 'refs/heads/main' && secrets.SITE_URL || '' }}
 
       - name: Upload build artifacts
         uses: actions/upload-artifact@v6
@@ -58,12 +58,11 @@ jobs:
     name: Deploy to Cloudflare Pages
     needs: quality-checks
     runs-on: ubuntu-latest
-    if: github.ref == 'refs/heads/main' && github.event_name == 'push'
+    if: github.event_name == 'push'
+    environment:
+      name: ${{ github.ref == 'refs/heads/main' && 'production' || 'dev' }}
     permissions:
       deployments: write
-    environment:
-      name: Production
-      url: https://ragibsmajic.com
     
     steps:
       - name: Download build artifacts
@@ -78,11 +77,12 @@ jobs:
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
           gitHubToken: ${{ secrets.GITHUB_TOKEN }}
-          command: pages deploy out --project-name=${{ secrets.CLOUDFLARE_PROJECT_NAME }} --branch=${{ github.ref_name }}
+          command: pages deploy out --project-name=${{ secrets.CLOUDFLARE_PROJECT_NAME }} --branch=${{ github.ref_name }} --env=${{ github.ref == 'refs/heads/main' && 'production' || 'dev' }}
 
   create-tag:
     name: Create Release Tag
     needs: deploy
+    if: github.ref == 'refs/heads/main' && github.event_name == 'push'
     runs-on: ubuntu-latest
     permissions:
       contents: write
