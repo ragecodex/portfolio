@@ -77,7 +77,7 @@ jobs:
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
           gitHubToken: ${{ secrets.GITHUB_TOKEN }}
-          command: pages deploy out --project-name=${{ secrets.CLOUDFLARE_PROJECT_NAME }} --branch=${{ github.ref == 'refs/heads/main' && 'production' || 'dev' }}
+          command: pages deploy out --project-name=${{ secrets.CLOUDFLARE_PROJECT_NAME }}
 
   create-tag:
     name: Create Release Tag
