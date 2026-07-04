@@ -61,9 +61,6 @@ jobs:
     if: github.event_name == 'push'
     permissions:
       deployments: write
-    environment:
-      name: Production
-      url: https://ragibsmajic.com
     
     steps:
       - name: Download build artifacts
