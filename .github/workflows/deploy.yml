@@ -42,7 +42,7 @@ jobs:
         run: npm run test:coverage
 
       - name: Security audit
-        run: npm audit --audit-level=high
+        run: npm audit --audit-level=medium
 
       - name: Build Next.js application
         run: npm run build
