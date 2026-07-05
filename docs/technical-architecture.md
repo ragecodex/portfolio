@@ -70,7 +70,8 @@ Build Time:
 │  • Type checking (TypeScript)                               │
 │  • Security vulnerability scan (npm audit)                  │
 │  • Build Next.js app                                        │
-│  • Run tests (if present)                                   │
+│  • Run tests (Vitest)                                      │
+│  • Enforce coverage thresholds (fail if under 80%)         │
 └──────────────────┬──────────────────────────────────────────┘
                    │ Only if all checks pass ✅
                    ↓
@@ -132,6 +133,8 @@ Build Time:
 
 ### Development Tools
 - **ESLint** (code linting)
+- **Vitest** (unit and component testing)
+- **React Testing Library** (UI interaction assertions)
 - **Prettier** (code formatting)
 - **Husky** (Git hooks for pre-commit checks) - Optional
 - **VS Code** (recommended IDE with extensions)
@@ -207,6 +210,14 @@ c:\Projects\MyPortfolio\
 │   │   ├── technologies.ts        # Technologies list
 │   │   ├── projects.ts            # Projects data
 │   │   └── metadata.ts            # SEO metadata configuration
+│   │
+│   ├── components/                # React components and their tests
+│   │   ├── layout/
+│   │   │   ├── Header.tsx
+│   │   │   └── Header.test.tsx
+│   │   └── sections/
+│   │       ├── About.tsx
+│   │       └── About.test.tsx
 │   │
 │   ├── types/                     # TypeScript type definitions
 │   │   ├── profile.ts
@@ -743,10 +754,9 @@ jobs:
         run: npm run build
         env:
           NODE_ENV: production
-      
-      # Optional: Run tests if present
-      # - name: Run tests
-      #   run: npm test
+
+      - name: Run tests with coverage
+        run: npm run test:coverage
 
   deploy:
     name: Deploy to Cloudflare Pages

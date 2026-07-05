@@ -15,11 +15,13 @@ npm run dev          # Start dev server with Turbopack
 npm run build        # Production build (must pass with 0 errors)
 npm run type-check   # TypeScript validation only
 npm run lint         # ESLint check
+npm run test         # Run Vitest suite
+npm run test:coverage # Run tests and enforce coverage thresholds
 ```
 
 **Important**: Always run `npm run type-check` before committing content changes. TypeScript will catch missing fields or type mismatches in content files.
 
-**Important**: Always run `npm run type-check` before committing content changes. TypeScript will catch missing fields or type mismatches in content files.
+**Testing policy**: All new features, UI behaviors, and bug fixes must include tests. Coverage must stay above 80% globally, and new work should not reduce existing coverage thresholds.
 
 ## Project Structure & Conventions
 
@@ -206,6 +208,8 @@ images: {
 ## Troubleshooting
 
 **Build fails with type errors**: Run `npm run type-check` to see full error list. Check content files match type definitions.
+
+**Tests missing for new work**: Add or update component/content tests before considering the feature complete. Prefer testing real rendered behavior over implementation details.
 
 **Navigation not scrolling**: Verify section `id` matches `href` in navItems. Check `scroll-behavior: smooth` in globals.css.
 
