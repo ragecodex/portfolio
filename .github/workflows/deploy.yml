@@ -3,7 +3,7 @@ name: Build & Deploy
 on:
   push:
     branches:
-      - '**'  # Run on all branches
+      - main
   pull_request:
     branches:
       - main
@@ -61,7 +61,6 @@ jobs:
     name: Deploy to Cloudflare Pages
     needs: quality-checks
     runs-on: ubuntu-latest
-    if: github.event_name == 'push'
     permissions:
       deployments: write
     
@@ -80,31 +79,3 @@ jobs:
           gitHubToken: ${{ secrets.GITHUB_TOKEN }}
           command: pages deploy out --project-name=${{ secrets.CLOUDFLARE_PROJECT_NAME }} --branch=${{ github.ref_name }}
 
-  create-tag:
-    name: Create Release Tag
-    needs: deploy
-    if: github.ref == 'refs/heads/main' && github.event_name == 'push'
-    runs-on: ubuntu-latest
-    permissions:
-      contents: write
-    
-    steps:
-      - name: Checkout repository
-        uses: actions/checkout@v6
-
-      - name: Create and push tag
-        run: |
-          VERSION=$(node -p "require('./package.json').version")
-          TAG_NAME="v$VERSION"
-          
-          git config user.name "github-actions[bot]"
-          git config user.email "github-actions[bot]@users.noreply.github.com"
-          
-          # Check if tag already exists
-          if git ls-remote --tags origin | grep -q "refs/tags/$TAG_NAME$"; then
-            echo "Tag $TAG_NAME already exists, skipping tag creation"
-          else
-            echo "Creating new tag $TAG_NAME"
-            git tag -a "$TAG_NAME" -m "Release $TAG_NAME"
-            git push origin "$TAG_NAME"
-          fi
