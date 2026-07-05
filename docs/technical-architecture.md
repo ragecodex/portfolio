@@ -738,8 +738,8 @@ jobs:
       
       - name: Security vulnerability scan (npm audit)
         run: |
-          # Fail on high and critical vulnerabilities
-          npm audit --audit-level=high
+          # Fail on medium, high and critical vulnerabilities
+          npm audit --audit-level=medium
           
       - name: Security vulnerability scan (Snyk) [Optional]
         # Uncomment if using Snyk for deeper security scanning
@@ -747,7 +747,7 @@ jobs:
         # env:
         #   SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
         # with:
-        #   args: --severity-threshold=high
+        #   args: --severity-threshold=medium
         continue-on-error: false
       
       - name: Build Next.js application
@@ -1036,9 +1036,9 @@ module.exports = nextConfig
     "lint": "next lint",
     "type-check": "tsc --noEmit",
     "format": "prettier --write \"src/**/*.{ts,tsx,css,md}\"",
-    "audit": "npm audit --audit-level=high",
+    "audit": "npm audit --audit-level=medium",
     "audit:fix": "npm audit fix",
-    "security-check": "npm audit --audit-level=high && npm run lint && npm run type-check"
+    "security-check": "npm audit --audit-level=medium && npm run lint && npm run type-check"
   }
 }
 ```
