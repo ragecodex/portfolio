@@ -17,7 +17,12 @@ export const technologies: Technology[] = [
     name: "C#",
     icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/csharp/csharp-original.svg",
   },
-  
+  {
+    id: "python",
+    name: "Python",
+    icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg",
+  },
+
   // Backend Frameworks
   {
     id: "dotnet",
@@ -35,18 +40,23 @@ export const technologies: Technology[] = [
     icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/express/express-original.svg",
   },
   {
+    id: "fastapi",
+    name: "FastAPI",
+    icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/fastapi/fastapi-original.svg",
+  },
+  {
     id: "entityframework",
     name: "Entity Framework",
     icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/dotnetcore/dotnetcore-original.svg",
   },
-  
+
   // Frontend Frameworks
   {
     id: "react",
     name: "React",
     icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg",
   },
-  
+
   // Databases
   {
     id: "postgresql",
@@ -78,7 +88,7 @@ export const technologies: Technology[] = [
     name: "Elasticsearch",
     icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/elasticsearch/elasticsearch-original.svg",
   },
-  
+
   // Cloud & Infrastructure
   {
     id: "aws",
@@ -105,7 +115,7 @@ export const technologies: Technology[] = [
     name: "Kubernetes",
     icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/kubernetes/kubernetes-plain.svg",
   },
-  
+
   // Tools & Services
   {
     id: "git",
