@@ -62,6 +62,9 @@ export default function Experience() {
                       <span className="text-gray-400">({role.duration})</span>
                     )}
                   </div>
+                  <h5 className="text-sm font-semibold uppercase tracking-wide text-gray-300 mb-2">
+                    Key responsibilities
+                  </h5>
                   <ul className="space-y-2 text-gray-400 mb-4">
                     {role.responsibilities.map((resp, idx) => (
                       <li key={idx} className="flex">

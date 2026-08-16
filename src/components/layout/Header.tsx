@@ -3,11 +3,12 @@
 import { useEffect, useState } from "react";
 
 const navItems = [
-  { label: "About", href: "#about" },
+  { label: "Profile", href: "#about" },
+  { label: "Featured Work", href: "#projects" },
   { label: "Experience", href: "#experience" },
-  { label: "Skills", href: "#skills" },
-  { label: "Projects", href: "#projects" },
+  { label: "Capabilities", href: "#skills" },
   { label: "Education", href: "#education" },
+  { label: "Languages", href: "#languages" },
 ];
 
 export default function Header() {
