@@ -146,5 +146,26 @@ export const technologies: Technology[] = [
     id: "kafka",
     name: "Kafka",
     icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/apachekafka/apachekafka-original.svg",
+    lightOnDark: true,
+  },
+  {
+    id: "rabbitmq",
+    name: "RabbitMQ",
+    icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/rabbitmq/rabbitmq-original.svg",
+  },
+  {
+    id: "claude-code",
+    name: "Claude Code",
+    icon: "https://cdn.simpleicons.org/anthropic/FFFFFF",
+  },
+  {
+    id: "codex",
+    name: "Codex",
+    icon: "https://api.iconify.design/logos:openai-icon.svg",
+  },
+  {
+    id: "chatgpt",
+    name: "ChatGPT",
+    icon: "https://api.iconify.design/logos:openai-icon.svg",
   },
 ];

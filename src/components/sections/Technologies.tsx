@@ -20,7 +20,11 @@ export default function Technologies() {
                   src={tech.icon}
                   alt={tech.name}
                   fill
-                  className="object-contain filter brightness-90 group-hover:brightness-110 transition-all"
+                  className={`object-contain filter transition-all ${
+                    tech.lightOnDark
+                      ? "invert brightness-200 group-hover:brightness-200"
+                      : "brightness-90 group-hover:brightness-110"
+                  }`}
                 />
               </div>
               <p className="text-xs text-gray-400 text-center group-hover:text-gray-200 transition-colors">
