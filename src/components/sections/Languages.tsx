@@ -3,7 +3,7 @@ import { ProficiencyLabels } from "@/types/language";
 
 export default function Languages() {
   return (
-    <section className="section-container">
+    <section id="languages" className="section-container">
       <h2 className="text-4xl font-bold text-gray-100 mb-12 text-center">
         Languages
       </h2>

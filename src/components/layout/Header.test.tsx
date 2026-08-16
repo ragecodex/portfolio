@@ -51,15 +51,15 @@ describe('Header', () => {
     expect(screen.getByRole('button', { name: /toggle menu/i })).toBeInTheDocument();
 
     fireEvent.click(screen.getByRole('button', { name: /toggle menu/i }));
-    expect(screen.getAllByText(/projects/i).length).toBeGreaterThan(0);
+    expect(screen.getAllByText(/featured work/i).length).toBeGreaterThan(0);
 
     const observer = observerInstances[0];
     observer.trigger([{ isIntersecting: true, target: aboutSection as Element }]);
 
-    const activeAboutButton = screen.getAllByRole('button', { name: /about/i })[0];
-    expect(activeAboutButton.className).toContain('text-white');
+    const activeProfileButton = screen.getAllByRole('button', { name: /profile/i })[0];
+    expect(activeProfileButton.className).toContain('text-white');
 
-    fireEvent.click(screen.getAllByRole('button', { name: /about/i })[1]);
+    fireEvent.click(screen.getAllByRole('button', { name: /profile/i })[1]);
     expect(scrollIntoView).toHaveBeenCalled();
   });
 });

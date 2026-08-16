@@ -8,10 +8,10 @@ export const projects: Project[] = [
     challenge:
       "The product needed to answer reliably across text, images, temporary attachments, and connected workplace data while giving users grounded, useful results. The retrieval layer had to combine lexical and semantic signals, support visual content, and remain fast enough for an interactive agent experience.",
     solution:
-      "Led development of the Python AI-agent services and embedding pipeline, integrating AWS Bedrock with models including Claude Haiku. Implemented the LLM tool loop for vision, temporary attachments, and web search; generated image descriptions and vector-rich Parquet data; and built in-memory FAISS indexes for retrieval. Improved the RAG pipeline with BM25, semantic search, reranking, and result fusion, while contributing across a .NET Core, FastAPI, and Next.js stack. I used SpecKit and spec-driven development, with Claude Code (Opus), Codex, and ChatGPT as active engineering tools for planning, implementation, testing, and review.",
+      "Led development of the Python AI-agent services and embedding pipeline, integrating AWS Bedrock with models. Implemented the LLM tool loop for vision, temporary attachments, and web search; generated image descriptions and vector-rich Parquet data; and built in-memory FAISS indexes for retrieval. Improved the RAG pipeline with BM25, semantic search, reranking, and result fusion, while contributing across a .NET Core, FastAPI, and Next.js stack. I used SpecKit and spec-driven development, with Claude Code (Opus), Codex, and ChatGPT as active engineering tools for planning, implementation, testing, and review.",
     outcome:
       "Established the multimodal retrieval foundation for an assistant that can work across documents, images, attachments, web results, and connected Google Drive, Gmail, and Calendar data—supporting daily briefs and context-aware answers.",
-    technologies: ["Python", "FastAPI", "AWS Bedrock", "Claude Haiku", "RAG", "FAISS", "BM25", "Next.js", ".NET Core", "Claude Code", "Codex", "ChatGPT"],
+    technologies: ["Python", "FastAPI", "AWS Bedrock", "RAG", "FAISS", "BM25", "Next.js", ".NET Core", "Claude Code", "Codex", "ChatGPT"],
     timeframe: "Ongoing",
     year: 2026,
   },
