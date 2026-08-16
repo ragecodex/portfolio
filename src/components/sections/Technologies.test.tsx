@@ -7,7 +7,7 @@ describe('Technologies', () => {
   it('renders the technology cards from content', () => {
     render(<Technologies />);
 
-    expect(screen.getByRole('heading', { name: /technologies & tools/i })).toBeInTheDocument();
+    expect(screen.getByRole('heading', { name: /engineering, ai & tools/i })).toBeInTheDocument();
     expect(screen.getByText(technologies[0].name)).toBeInTheDocument();
     expect(screen.getByText(technologies[7].name)).toBeInTheDocument();
   });

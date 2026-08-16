@@ -7,7 +7,7 @@ describe('Projects', () => {
   it('renders project cards from content and expands the selected project details', () => {
     render(<Projects />);
 
-    expect(screen.getByRole('heading', { name: /featured projects/i })).toBeInTheDocument();
+    expect(screen.getByRole('heading', { name: /featured engineering work/i })).toBeInTheDocument();
     expect(screen.getByText(projects[0].name)).toBeInTheDocument();
 
     const firstToggle = screen.getAllByRole('button', { name: /expand/i })[0];

@@ -20,11 +20,11 @@ export const metadata: Metadata = {
       "http://localhost:3000"
   ),
   title: {
-    default: "Ragib Smajic - Senior Software Engineer",
+    default: "Ragib Smajic - AI-Enabled Software Engineer",
     template: "%s | Ragib Smajic",
   },
   description:
-    "Portfolio of Ragib Smajic, Senior Software Engineer with 8 years of experience building scalable web applications. Specializing in Node.js, .Net, AWS, and cloud architecture.",
+    "Portfolio of Ragib Smajic, AI-enabled Senior Software Engineer building multimodal AI agents, RAG systems, and scalable cloud applications with Python, AWS Bedrock, .NET, and Next.js.",
   keywords: [
     "Ragib Smajic",
     "Senior Software Engineer",
@@ -32,6 +32,11 @@ export const metadata: Metadata = {
     "React Developer",
     "Node.js Developer",
     "AWS Cloud Engineer",
+    "AI Engineer",
+    "RAG Engineer",
+    "AWS Bedrock",
+    "Python Developer",
+    "FastAPI Developer",
     "Software Engineer Portfolio",
     "Tech Lead",
   ],
@@ -62,23 +67,23 @@ export const metadata: Metadata = {
     locale: "en_US",
     url: "https://ragibsmajic.com",
     siteName: "Ragib Smajic Portfolio",
-    title: "Ragib Smajic - Senior Software Engineer",
+    title: "Ragib Smajic - AI-Enabled Software Engineer",
     description:
-      "Senior Software Engineer with 8 years of experience building scalable web applications",
+      "AI-enabled Senior Software Engineer building multimodal AI agents, RAG systems, and scalable cloud applications",
     images: [
       {
         url: "/og-image.png",
         width: 1200,
         height: 630,
-        alt: "Ragib Smajic - Senior Software Engineer",
+        alt: "Ragib Smajic - AI-Enabled Software Engineer",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Ragib Smajic - Senior Software Engineer",
+    title: "Ragib Smajic - AI-Enabled Software Engineer",
     description:
-      "Senior Software Engineer with 8 years of experience building scalable web applications",
+      "AI-enabled Senior Software Engineer building multimodal AI agents, RAG systems, and scalable cloud applications",
     images: ["/og-image.png"],
   },
 };
