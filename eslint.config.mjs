@@ -8,6 +8,7 @@ export default [
       'node_modules/**',
       'out/**',
       'build/**',
+      'coverage/**',
       '.git/**',
       'public/**',
       '*.config.*',
